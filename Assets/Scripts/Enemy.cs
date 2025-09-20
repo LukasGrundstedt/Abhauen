@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     private void SpawnText(int index)
     {
         currentText = Instantiate(textPrefab, sprite.transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity).GetComponent<InputObject>();
-        currentText.Setup(dialogues[index]);
+        currentText.Setup(dialogues[index], player);
     }
 
     private void OnTriggerEnter(Collider other)

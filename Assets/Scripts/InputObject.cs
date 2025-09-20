@@ -13,15 +13,18 @@ public class InputObject : MonoBehaviour
     public static event Action OnCorrectInput;
     public static event Action OnWrongInput;
 
+    private Player player;
+
     private void Awake()
     {
         InputManager.OnInput += CompareInput;
     }
 
-    public void Setup(DialogueText message)
+    public void Setup(DialogueText message, Player player)
     {
         text.text = message.text;
         requiredType = message.dialogueType;
+        this.player = player;
 
         switch (message.dialogueType)
         {
@@ -55,6 +58,7 @@ public class InputObject : MonoBehaviour
         else
         {
             OnWrongInput?.Invoke();
+            player.GetHit(1);
         }
     }
 
@@ -63,6 +67,7 @@ public class InputObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnTextCollided?.Invoke();
+            player.GetHit(1);
             Destroy(gameObject);
         }
     }

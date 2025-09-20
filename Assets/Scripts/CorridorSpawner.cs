@@ -20,7 +20,7 @@ public class CorridorSpawner : MonoBehaviour
     private void SpawnNewPart(Vector3 destroyedPos)
     {
         Vector3 newPos = lastPart.transform.position + new Vector3(0f, 0f, corridorPartZLength);
-        lastPart = Instantiate(corridorPrefab, newPos, Quaternion.identity).transform;
+        lastPart = Instantiate(corridorPrefab, newPos, Quaternion.identity, transform).transform;
         OnCorridorPartSpawned?.Invoke(newPos);
     }
 

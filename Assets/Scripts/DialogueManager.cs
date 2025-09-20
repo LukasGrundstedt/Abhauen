@@ -7,7 +7,6 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private GameObject inputTextObjectPrefab;
     [SerializeField] private GameObject staticTextObjectPrefab;
-    [SerializeField] private float textCooldown = 2f;
 
     private DialogueObject currentDialogue;
     private int currentIndex = 0;

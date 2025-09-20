@@ -13,7 +13,7 @@ public class SpeedController : MonoBehaviour
     public int Count { get; set; } = 0;
     public int CountWhileDrugs { get; set; } = 0;
     public float CurrentFactor { get; set; } = 1f;
-    public bool OnDrugs { get; private set; } = false;
+   
 
     private void Awake()
     {
@@ -26,42 +26,39 @@ public class SpeedController : MonoBehaviour
 
     private void Update()
     {
-        float currentMultiplier = Mathf.Clamp(Count / maxCountToMaxSpeed, 1f, maxMultiplier);
-        Speed = Corridor.Instance.Speed * currentMultiplier * CurrentFactor;
+        float currentMultiplier = Mathf.Lerp(1f, maxMultiplier, (float)Count / (float)maxCountToMaxSpeed);
+        Speed = Corridor.Instance.Speed * currentMultiplier * CurrentFactor * Time.deltaTime;
+
+        Debug.Log("Speed: " + Speed + " | Count: " + Count + " | Multiplier: " + currentMultiplier + " | CurrentFactor: " + CurrentFactor);
     }
 
-    public void CountCount()
+    public void UpdateCount()
     {
+        CountDrugs();
         if (Count < maxCountToMaxSpeed)
             Count++;
     }
 
-    public void SetCountDrugs()
+    public void SetSlowFactor()
     {
-        if (CountWhileDrugs != 0)
-        {
-            // ... Tell player, can't take drugs yet
-            return;
-        }
-
         CurrentFactor = slowDownFactor;
-        OnDrugs = true;
     }
 
-    public void CheckCountDrugs()
+    public void CountDrugs()
     {
-        if (!OnDrugs)
+        if (!Player.Instance.OnDrugs)
             return;
 
         if (CountWhileDrugs >= countToNormal)
         {
             CountWhileDrugs = 0;
             CurrentFactor = 1f;
-            OnDrugs = false;
+            Player.Instance.OnDrugs = false;
             return;
         }
         CountWhileDrugs++;
-        CurrentFactor = 1f - (CountWhileDrugs / (float)countToNormal) * (1f - slowDownFactor);
+        float ratio = (float)CountWhileDrugs / (float)countToNormal;
+        CurrentFactor = (1f - ratio) * slowDownFactor;
     }
 }
 

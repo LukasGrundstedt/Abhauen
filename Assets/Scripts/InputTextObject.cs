@@ -58,7 +58,7 @@ public class InputTextObject : TextObject
             DialogueManager.Instance.PlayerSucceeded = false;
             player.GetHit(1);
         }
-        SpeedController.Instance.CountCount();
+        SpeedController.Instance.UpdateCount();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,7 +67,7 @@ public class InputTextObject : TextObject
         {
             OnTextCollided?.Invoke();
             player.GetHit(1);
-            SpeedController.Instance.CountCount();
+            SpeedController.Instance.UpdateCount();
             DialogueManager.Instance.PlayerSucceeded = false;
             Destroy(gameObject);
         }

@@ -1,6 +1,8 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] private int aimScore;
     [SerializeField] private TextMeshProUGUI drugsAmount;
+    [SerializeField] private TextMeshProUGUI drugsUseable;
 
     public int MaxHealth = 10;
     public int DrugsAvailable = 5;
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour
     public int Score { get; set; } = 0;
     public int Health { get; set; }
     public int DrugsUsed { get; private set; } = 0;
+    public bool OnDrugs { get; set; } = false;
 
     private void Awake()
     {
@@ -31,8 +35,6 @@ public class Player : MonoBehaviour
         DrugsUsed = 0;
         sprite.transform.rotation = Quaternion.identity;
         drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
-        InputManager.OnInput += TakeDrugs;
-
     }
 
     private void Update()
@@ -48,18 +50,29 @@ public class Player : MonoBehaviour
         Score++;
     }
 
-    public void TakeDrugs(KeyCode key)
+    public void TakeDrugs()
     {
-        if (key != KeyCode.U)
-            return;
-
         if (DrugsUsed > 5)
             return;
 
+        if (OnDrugs != false)
+        {
+            drugsUseable.gameObject.SetActive(true);
+            StartCoroutine(HideDragsUseable());
+            return;
+        }
+
+        OnDrugs = true;
         DrugsUsed++;
         Health++;
         drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
-        SpeedController.Instance.SetCountDrugs();
+        SpeedController.Instance.SetSlowFactor();
+    }
+
+    public IEnumerator HideDragsUseable()
+    {
+        yield return new WaitForSeconds(0.1f);
+        drugsUseable.gameObject.SetActive(false);
     }
 
     public void GetHit(int damage)
@@ -68,6 +81,12 @@ public class Player : MonoBehaviour
             return;
 
         Health -= damage;
+        Debug.Log("Player got hit! Current health: " + Health);
+        if (Health <= 0)
+        {
+            Health = 0;
+            GameManager.Instance.State = GameState.PlayerIsDying;
+        }
     }
 
     public void Die()

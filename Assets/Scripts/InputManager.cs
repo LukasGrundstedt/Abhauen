@@ -64,6 +64,11 @@ public class InputManager : MonoBehaviour
 
             if (pressedKey == KeyCode.None) return;
 
+            if (pressedKey == KeyCode.U)
+            {
+                Player.Instance.TakeDrugs();
+                return;
+            }
             OnInput?.Invoke(pressedKey);
         }
         //switch (TargetCategory)

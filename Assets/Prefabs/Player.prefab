@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9173810577029922269}
+  - component: {fileID: 5391520059847131686}
   - component: {fileID: 1937108638325841207}
   m_Layer: 0
   m_Name: Player
@@ -123,6 +124,24 @@ Transform:
   - {fileID: 6686848633305264876}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5391520059847131686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998117310595867949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571088eadcdc62c4ca24c472ff1654ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  sprite: {fileID: 0}
+  fallSpeed: 5
+  aimScore: 10
+  drugsAmount: {fileID: 0}
+  MaxHealth: 10
+  DrugsAvailable: 5
 --- !u!65 &1937108638325841207
 BoxCollider:
   m_ObjectHideFlags: 0

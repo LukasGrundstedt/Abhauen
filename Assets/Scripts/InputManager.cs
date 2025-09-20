@@ -9,10 +9,10 @@ public class InputManager : MonoBehaviour
 
     public Dictionary<DialogueType, KeyCode> InputMap { get; private set; } = new()
     {
-        { DialogueType.command, KeyCode.Y },
-        { DialogueType.accuse, KeyCode.A },
-        { DialogueType.insult, KeyCode.B },
-        { DialogueType.compliment, KeyCode.X }
+        { DialogueType.Command, KeyCode.Y },
+        { DialogueType.Accuse, KeyCode.A },
+        { DialogueType.Insult, KeyCode.B },
+        { DialogueType.Compliment, KeyCode.X }
     };
 
     public static event Action<KeyCode> OnInput;

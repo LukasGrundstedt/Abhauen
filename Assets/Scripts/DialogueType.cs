@@ -1,8 +1,11 @@
 ﻿public enum DialogueType
 {
-    flavour,
-    command,
-    accuse,
-    insult,
-    compliment
+    Nothing,
+    PlayerText,
+    PlayerResponseFail,
+    PlayerResponseSuccess,
+    Command,
+    Accuse,
+    Insult,
+    Compliment
 }

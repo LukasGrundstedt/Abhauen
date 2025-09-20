@@ -1,12 +1,10 @@
 ﻿using System;
 using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
 
-public class InputObject : MonoBehaviour
+public class InputTextObject : TextObject
 {
     [SerializeField] private ObjectMover mover;
-    [SerializeField] private TMP_Text text;
 
     private DialogueType requiredType;
     public static event Action OnTextCollided;
@@ -28,25 +26,23 @@ public class InputObject : MonoBehaviour
 
         switch (message.dialogueType)
         {
-            case DialogueType.flavour:
+            case DialogueType.Nothing:
                 text.color = Color.white;
                 break;
-            case DialogueType.command:
+            case DialogueType.Command:
                 text.color = Color.red;
                 break;
-            case DialogueType.accuse:
+            case DialogueType.Accuse:
                 text.color = Color.blue;
                 break;
-            case DialogueType.insult:
+            case DialogueType.Insult:
                 text.color = Color.green;
                 break;
-            case DialogueType.compliment:
+            case DialogueType.Compliment:
                 text.color = Color.yellow;
                 break;
         }
     }
-
-    
 
     private void CompareInput(KeyCode key)
     {

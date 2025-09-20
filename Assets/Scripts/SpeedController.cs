@@ -26,8 +26,9 @@ public class SpeedController : MonoBehaviour
 
     private void Update()
     {
+        //Speed = Corridor.Instance.Speed;
         float currentMultiplier = Mathf.Lerp(1f, maxMultiplier, (float)Count / (float)maxCountToMaxSpeed);
-        Speed = Corridor.Instance.Speed * currentMultiplier * CurrentFactor * Time.deltaTime;
+        Speed = Corridor.Instance.Speed * currentMultiplier * CurrentFactor;
 
         Debug.Log("Speed: " + Speed + " | Count: " + Count + " | Multiplier: " + currentMultiplier + " | CurrentFactor: " + CurrentFactor);
     }
@@ -58,7 +59,7 @@ public class SpeedController : MonoBehaviour
         }
         CountWhileDrugs++;
         float ratio = (float)CountWhileDrugs / (float)countToNormal;
-        CurrentFactor = (1f - ratio) * slowDownFactor;
+        CurrentFactor =  ratio * (1-slowDownFactor) + slowDownFactor;
     }
 }
 

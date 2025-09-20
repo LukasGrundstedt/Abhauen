@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI drugsAmount;
     [SerializeField] private TextMeshProUGUI drugsUseable;
 
-    public int MaxHealth = 10;
+    [SerializeField] private int maxHealth = 10;
     public int DrugsAvailable = 5;
 
     public int Score { get; set; } = 0;
@@ -31,7 +30,7 @@ public class Player : MonoBehaviour
         Instance = this;
 
         Score = aimScore;
-        Health = MaxHealth;
+        Health = maxHealth;
         DrugsUsed = 0;
         sprite.transform.rotation = Quaternion.identity;
         drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
@@ -96,12 +95,12 @@ public class Player : MonoBehaviour
 
         Quaternion target = Quaternion.Euler(90, 0, 0);
 
-        if (Quaternion.Angle(transform.rotation, target) < 0.1f)
+        if (Quaternion.Angle(sprite.transform.rotation, target) < 0.1f)
         {
             GameManager.Instance.State = GameState.GameOver;
             return;
         }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * fallSpeed);
+        sprite.transform.rotation = Quaternion.Slerp(sprite.transform.rotation, target, Time.deltaTime * fallSpeed);
     }
 }

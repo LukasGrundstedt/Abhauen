@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
             {
                 activeEnemy.EndDialogue();
                 activeEnemy = null;
+                currentDialogue = null;
                 return;
             }
 
@@ -111,6 +112,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueObject dialogueObject)
     {
         currentDialogue = dialogueObject;
+        currentIndex = 0;
     }
 
     private bool IsPlayerText(DialogueType type)

@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoWorker01
       objectReference: {fileID: 0}
+    - target: {fileID: 3851512865087269160, guid: 030ddbaf71e3c344aaf93c90e3d5d6f6, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: deed69638b25ff44abf208b0bfdc1956, type: 2}
     - target: {fileID: 3929582826987260986, guid: 030ddbaf71e3c344aaf93c90e3d5d6f6, type: 3}
       propertyPath: m_Sprite
       value: 

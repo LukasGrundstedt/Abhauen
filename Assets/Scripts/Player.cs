@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
 
         DrugsUsed++;
         Health++;
+        SpeedController.Instance.SlowDown();
     }
 
     public void GetHit(int damage)

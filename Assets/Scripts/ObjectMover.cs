@@ -13,7 +13,7 @@ public class ObjectMover : MonoBehaviour
         {
             return;
         }
-        rb.MovePosition(transform.position + new Vector3(0f, 0f, -(Corridor.Speed * speedMultiplier * Time.deltaTime)));
+        rb.MovePosition(transform.position + new Vector3(0f, 0f, -(SpeedController.Instance.Speed * speedMultiplier * Time.deltaTime)));
     }
 
     private void OnTriggerEnter(Collider other)

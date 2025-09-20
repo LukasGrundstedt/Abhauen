@@ -12,5 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b63f36237e571642bea2628248c4ca5, type: 3}
   m_Name: CoWorker1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueText
-  text: 
-  dialogueType: 0
+  <Dialogue>k__BackingField:
+  - text: Good morning!
+    dialogueType: 0
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: Hi...
+    dialogueType: 1
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: You look really dead, man. Is everything-?
+    dialogueType: 7
+    isRespondableText: 1
+    successResponse: Well, I have my coffee now.
+    failureResponse: ...
+  - text: "* Announcement: Mr. Doe, please come to the manager\u2019s office *"
+    dialogueType: 0
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: Well, good luck, man.
+    dialogueType: 0
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 

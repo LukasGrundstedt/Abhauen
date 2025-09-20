@@ -49,11 +49,13 @@ public class InputTextObject : TextObject
         {
             //OnCorrectInput?.Invoke();
             Player.Instance.MakeScore();
+            DialogueManager.Instance.PlayerSucceeded = true;
             Destroy(gameObject);
         }
         else
         {
             //OnWrongInput?.Invoke();
+            DialogueManager.Instance.PlayerSucceeded = false;
             player.GetHit(1);
         }
         SpeedController.Instance.CountCount();
@@ -66,6 +68,7 @@ public class InputTextObject : TextObject
             OnTextCollided?.Invoke();
             player.GetHit(1);
             SpeedController.Instance.CountCount();
+            DialogueManager.Instance.PlayerSucceeded = false;
             Destroy(gameObject);
         }
     }
@@ -73,5 +76,6 @@ public class InputTextObject : TextObject
     private void OnDestroy()
     {
         InputManager.OnInput -= CompareInput;
+        DialogueManager.OnTextProgress?.Invoke();
     }
 }

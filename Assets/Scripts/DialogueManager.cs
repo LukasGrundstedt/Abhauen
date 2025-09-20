@@ -1,70 +1,106 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
-    [SerializeField] private GameObject textPrefab;
+    [SerializeField] private GameObject inputTextObjectPrefab;
+    [SerializeField] private GameObject staticTextObjectPrefab;
     [SerializeField] private float textCooldown = 2f;
-    private float timer;
 
     private DialogueObject currentDialogue;
     private int currentIndex = 0;
     private TextObject currentTextObject;
+    private bool nextTextIsResponse;
 
     [SerializeField] private Player player;
     private Enemy activeEnemy;
 
+    public bool PlayerSucceeded { get; set; }
+
+    public static Action OnTextProgress;
+
     private void Awake()
     {
         Instance = this;
+        OnTextProgress += ProgressDialogue;
     }
 
     private void Update()
     {
-        if (currentDialogue != null)
-        {
-            //SpeedController.Instance.Speed = 0;
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
-            {
-                timer = textCooldown;
-                ProgressDialogue();
-            }
-        }
+
     }
 
     private void ProgressDialogue()
     {
-        if (currentIndex == currentDialogue.Dialogue.Length - 1)
+        if (nextTextIsResponse)
         {
-            activeEnemy.EndDialogue();
-            activeEnemy = null;
-            return;
-        }
-
-        SpawnText(currentIndex);
-        currentIndex++;
-    }
-
-    private void SpawnText(int index)
-    {
-        DialogueText textToSpawn = currentDialogue.Dialogue[index];
-
-        Vector3 spawnPos;
-        if (textToSpawn.dialogueType == DialogueType.PlayerText)
-        {
-            spawnPos = player.transform.position;
-        }
-        else if (textToSpawn.dialogueType == DialogueType.Nothing)
-        {
-            spawnPos = activeEnemy.transform.position;
+            SpawnResponse(currentIndex - 1, PlayerSucceeded);
         }
         else
         {
+            if (currentIndex == currentDialogue.Dialogue.Length)
+            {
+                activeEnemy.EndDialogue();
+                activeEnemy = null;
+                return;
+            }
 
+            SpawnNextDialogue(currentIndex);
+            currentIndex++;
+        }
+    }
 
-            //Instantiate(textPrefab, spawnPos, Quaternion.identity);
+    private void SpawnResponse(int index, bool success)
+    {
+        Vector3 spawnPos = player.transform.position + new Vector3(-0.8f, 1f, 1.5f);
+        currentTextObject = Instantiate(staticTextObjectPrefab, spawnPos, Quaternion.identity).GetComponent<StaticTextObject>();
+        if (currentTextObject is StaticTextObject staticTextObject)
+        {
+            string message = success 
+                ? currentDialogue.Dialogue[index].successResponse 
+                : currentDialogue.Dialogue[index].failureResponse;
+
+            staticTextObject.Setup(message, player);
+        }
+        nextTextIsResponse = false;
+    }
+
+    private void SpawnNextDialogue(int index)
+    {
+        DialogueText textToSpawn = currentDialogue.Dialogue[index];
+
+        if (textToSpawn.isRespondableText)
+        {
+            nextTextIsResponse = true;
+        }
+
+        Vector3 spawnPos;
+        if (IsPlayerText(textToSpawn.dialogueType))
+        {
+            spawnPos = player.transform.position + new Vector3(-0.8f, 1f, 1.5f);
+        }
+        else
+        {
+            spawnPos = activeEnemy.transform.position + new Vector3(0f, 1.5f, 0f);
+        }
+
+        if (textToSpawn.dialogueType == DialogueType.Nothing || IsPlayerText(textToSpawn.dialogueType))
+        {
+            currentTextObject = Instantiate(staticTextObjectPrefab, spawnPos, Quaternion.identity).GetComponent<TextObject>();
+            if (currentTextObject is StaticTextObject staticTextObject)
+            {
+                staticTextObject.Setup(textToSpawn.text, player);
+            }
+        }
+        else
+        {
+            currentTextObject = Instantiate(inputTextObjectPrefab, spawnPos, Quaternion.identity).GetComponent<TextObject>();
+            if (currentTextObject is InputTextObject inputTextObject)
+            {
+                inputTextObject.Setup(textToSpawn, player);
+            }
         }
     }
 
@@ -76,5 +112,12 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueObject dialogueObject)
     {
         currentDialogue = dialogueObject;
+    }
+
+    private bool IsPlayerText(DialogueType type)
+    {
+        return type == DialogueType.PlayerText
+            || type == DialogueType.PlayerResponseFail
+            || type == DialogueType.PlayerResponseSuccess;
     }
 }

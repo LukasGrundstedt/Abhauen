@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SpeedController : MonoBehaviour
 {
     public static SpeedController Instance { get; private set; }
 
-    [SerializeField] private float multiplier = 100f;
+    [SerializeField] private float maxMultiplier = 10f;
+    [SerializeField] private int maxCountToMaxSpeed = 21; // 75% of 28
+    [SerializeField] private int countToNormal = 3;
+    [SerializeField] private float slowDownFactor = 0.5f;
     public float Speed { get; private set; }
-    private float count = 0f;
+    public int Count { get; set; } = 0;
+    public int CountWhileDrugs { get; set; } = 0;
+    public float CurrentFactor { get; set; } = 1f;
+    public bool OnDrugs { get; private set; } = false;
 
     private void Awake()
     {
@@ -19,14 +26,42 @@ public class SpeedController : MonoBehaviour
 
     private void Update()
     {
-        count += Time.deltaTime;
-        Speed = Corridor.Instance.Speed + count * multiplier;
+        float currentMultiplier = Mathf.Clamp(Count / maxCountToMaxSpeed, 1f, maxMultiplier);
+        Speed = Corridor.Instance.Speed * currentMultiplier * CurrentFactor;
     }
 
-    public void SlowDown()
+    public void CountCount()
     {
-        count = 0f;
-        Speed = Corridor.Instance.Speed;
+        if (Count < maxCountToMaxSpeed)
+            Count++;
+    }
+
+    public void SetCountDrugs()
+    {
+        if (CountWhileDrugs != 0)
+        {
+            // ... Tell player, can't take drugs yet
+            return;
+        }
+
+        CurrentFactor = slowDownFactor;
+        OnDrugs = true;
+    }
+
+    public void CheckCountDrugs()
+    {
+        if (!OnDrugs)
+            return;
+
+        if (CountWhileDrugs >= countToNormal)
+        {
+            CountWhileDrugs = 0;
+            CurrentFactor = 1f;
+            OnDrugs = false;
+            return;
+        }
+        CountWhileDrugs++;
+        CurrentFactor = 1f - (CountWhileDrugs / (float)countToNormal) * (1f - slowDownFactor);
     }
 }
 

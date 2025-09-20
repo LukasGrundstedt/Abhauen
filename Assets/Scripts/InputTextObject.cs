@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class InputTextObject : TextObject
 {
@@ -8,8 +7,8 @@ public class InputTextObject : TextObject
 
     private DialogueType requiredType;
     public static event Action OnTextCollided;
-    public static event Action OnCorrectInput;
-    public static event Action OnWrongInput;
+    //public static event Action OnCorrectInput;
+    //public static event Action OnWrongInput;
 
     private Player player;
 
@@ -48,14 +47,16 @@ public class InputTextObject : TextObject
     {
         if (InputManager.Instance.InputMap[requiredType] == key)
         {
-            OnCorrectInput?.Invoke();
+            //OnCorrectInput?.Invoke();
+            Player.Instance.MakeScore();
             Destroy(gameObject);
         }
         else
         {
-            OnWrongInput?.Invoke();
+            //OnWrongInput?.Invoke();
             player.GetHit(1);
         }
+        SpeedController.Instance.CountCount();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,6 +65,7 @@ public class InputTextObject : TextObject
         {
             OnTextCollided?.Invoke();
             player.GetHit(1);
+            SpeedController.Instance.CountCount();
             Destroy(gameObject);
         }
     }

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private float fallSpeed;
     [SerializeField] private int aimScore;
+    [SerializeField] private TextMeshProUGUI drugsAmount;
+
     public int MaxHealth = 10;
     public int DrugsAvailable = 5;
 
@@ -27,6 +30,9 @@ public class Player : MonoBehaviour
         Health = MaxHealth;
         DrugsUsed = 0;
         sprite.transform.rotation = Quaternion.identity;
+        drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
+        InputManager.OnInput += TakeDrugs;
+
     }
 
     private void Update()
@@ -42,14 +48,18 @@ public class Player : MonoBehaviour
         Score++;
     }
 
-    public void TakeDrugs()
+    public void TakeDrugs(KeyCode key)
     {
+        if (key != KeyCode.U)
+            return;
+
         if (DrugsUsed > 5)
             return;
 
         DrugsUsed++;
         Health++;
-        SpeedController.Instance.SlowDown();
+        drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
+        SpeedController.Instance.SetCountDrugs();
     }
 
     public void GetHit(int damage)

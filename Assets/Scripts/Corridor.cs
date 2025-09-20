@@ -4,8 +4,8 @@ public class Corridor : MonoBehaviour
 {
     public static Corridor Instance { get; private set; }
     
-    public static float Speed { get; private set; }
     [SerializeField] private float speed = 1f;
+    public static float Speed { get; private set; }
 
     private void Awake()
     {

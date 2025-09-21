@@ -5,6 +5,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    [SerializeField] private StudioEventEmitter eventEmitter;
+
     private FMOD.Studio.Bus musicBus;
     private FMOD.Studio.Bus soundBus;
 
@@ -37,8 +39,8 @@ public class AudioManager : MonoBehaviour
         soundBus = RuntimeManager.GetBus("bus:/SFX");
     }
 
-    public void SetMusicVolume(float volume)
+    public void SetIntensity(float intensity)
     {
-
+        eventEmitter.SetParameter("Intensity", intensity);
     }
 }

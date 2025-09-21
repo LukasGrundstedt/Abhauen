@@ -174,7 +174,7 @@ MonoBehaviour:
   - "Don\u2019t think too hard, it will only get in a way of your good life<link=\"ComicPanel_1_0_TweenScript\"></link>"
   - Follow the routine, be a slave to the corporation, give your 110% <link="ComicPanel_1_1_TweenScript"></link>
   - 'Earn money, live a good life '
-  delaySeconds: 3
+  delaySeconds: 4
   introTextID: 0
   startOnAwake: 1
 --- !u!1 &690692051

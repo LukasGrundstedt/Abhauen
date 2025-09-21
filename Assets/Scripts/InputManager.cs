@@ -28,7 +28,10 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Instance.HandleEscapeButton();
+        }
     }
 
     private void OnGUI()
@@ -43,7 +46,7 @@ public class InputManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Escape))
             {
-                //GameManager.Instance.HandleEscapeButton();
+                return;
             }
 
             if (GameManager.Instance.State == GameState.Paused)
@@ -69,6 +72,7 @@ public class InputManager : MonoBehaviour
                 Player.Instance.TakeDrugs();
                 return;
             }
+
             OnInput?.Invoke(pressedKey);
         }
         //switch (TargetCategory)

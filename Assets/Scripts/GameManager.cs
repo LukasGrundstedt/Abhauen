@@ -5,6 +5,8 @@ public partial class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState State;
 
+    [SerializeField] private Transform pausePanel;
+
     public int Score { get; private set; } = 0;
 
     private void Awake()
@@ -24,16 +26,26 @@ public partial class GameManager : MonoBehaviour
     {
         if (State == GameState.Playing)
         {
-            State = GameState.Paused;
-            //pausePanel.SetActive(true);
-            Time.timeScale = 0f; // Pause the game
+            PauseGame();
         }
         else if (State == GameState.Paused)
         {
-            State = GameState.Playing;
-            //pausePanel.SetActive(false);
-            Time.timeScale = 1f; // Resume the game
+            UnpauseGame();
         }
+    }
+
+    public void PauseGame()
+    {
+        State = GameState.Paused;
+        pausePanel.gameObject.SetActive(true);
+        Time.timeScale = 0f; // Pause the game
+    }
+
+    public void UnpauseGame()
+    {
+        State = GameState.Playing;
+        pausePanel.gameObject.SetActive(false);
+        Time.timeScale = 1f; // Resume the game
     }
 }
 

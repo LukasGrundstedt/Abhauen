@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private DialogueObject dialogue;
 
+    public SpriteRenderer SpriteRenderer => sprite;
+
     private bool inDialogue;
     private int currentTextIndex;
     private InputTextObject currentText;

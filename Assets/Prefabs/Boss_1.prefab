@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2987093071713963794, guid: 030ddbaf71e3c344aaf93c90e3d5d6f6, type: 3}
       propertyPath: m_Name
-      value: CoWorker02
+      value: Boss_1
       objectReference: {fileID: 0}
     - target: {fileID: 3851512865087269160, guid: 030ddbaf71e3c344aaf93c90e3d5d6f6, type: 3}
       propertyPath: dialogue
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 3929582826987260986, guid: 030ddbaf71e3c344aaf93c90e3d5d6f6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2016242352, guid: fb14de2bd033de6429245e646d87fbb9, type: 3}
+      objectReference: {fileID: 21300000, guid: 6528cff27927e5942829f265a4b9972a, type: 3}
     - target: {fileID: 3929582826987260986, guid: 030ddbaf71e3c344aaf93c90e3d5d6f6, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

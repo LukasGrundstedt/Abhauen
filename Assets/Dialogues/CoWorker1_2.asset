@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b63f36237e571642bea2628248c4ca5, type: 3}
+  m_Name: CoWorker1_2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueText
+  <Dialogue>k__BackingField:
+  - text: How was the talk? Surely he praised you again. Like always.
+    dialogueType: 7
+    isRespondableText: 1
+    successResponse: Can we talk, please?
+    failureResponse: "You\u2026!"
+  - text: Uh, sure.
+    dialogueType: 0
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: "So what\u2019s up? Is something wrong? Tell me!"
+    dialogueType: 4
+    isRespondableText: 1
+    successResponse: "Yes, I will tell you. Your uselessness cost us the deal. And
+      now it\u2019s my fault."
+    failureResponse: Let me tell you. You useless being.
+  - text: Useless? Dude, how am I useless if you keep pushing your shit on me!
+    dialogueType: 6
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: Who was sick for a whole week?
+    dialogueType: 5
+    isRespondableText: 1
+    successResponse: "Being sick is a crime now\u2026?"
+    failureResponse: I-
+  - text: The interns are useless. Why? Because they refused to listen to me. They
+      oh so love you so damn much!
+    dialogueType: 7
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: "The manager gives you shit, now you push it to me instead? I\u2019ve always
+      greeted you in the morning DAILY, and do you greet back? Of course not."
+    dialogueType: 5
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: "The manager gives you shit, now you push it to me instead? I\u2019ve always
+      greeted you in the morning DAILY, and do you greet back? Of course not."
+    dialogueType: 5
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 

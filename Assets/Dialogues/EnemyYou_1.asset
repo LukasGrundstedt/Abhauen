@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b63f36237e571642bea2628248c4ca5, type: 3}
+  m_Name: EnemyYou_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueText
+  <Dialogue>k__BackingField:
+  - text: "Aren\u2019t you tired? Isn\u2019t it better to just rest and relax?"
+    dialogueType: 4
+    isRespondableText: 1
+    successResponse: "I would love to\u2026 But I can\u2019t"
+    failureResponse: "I can\u2019t rest"
+  - text: "Why can\u2019t you? NOTHING is HOLDING you back"
+    dialogueType: 4
+    isRespondableText: 1
+    successResponse: "Something is\u2026 holding me back? Something invisible."
+    failureResponse: I'm simply a coward. I can't quit.
+  - text: They say you are incompetent. They say you are arrogant. They say you lack
+      compassion.
+    dialogueType: 6
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: "Aren\u2019t you instead competent? Aren\u2019t you just a humble being?
+      Didn\u2019t you care deeply for your interns?"
+    dialogueType: 7
+    isRespondableText: 1
+    successResponse: "Maybe I am both? I won\u2019t deny that I am not perfect. But
+      surely I am not all bad\u2026"
+    failureResponse: You are right, I am incompetent, arrogant. Compassion is something
+      I never knew.
+  - text: "Tell me! Didn\u2019t the taste of freedom feel good? \u201CBe Free\u201D"
+    dialogueType: 4
+    isRespondableText: 1
+    successResponse: "It was wonderful, but as the label said \u201CUse at your own
+      risk\u201D."
+    failureResponse: "It was\u2026 wonderful! But-"
+  - text: "No \u201Cbut\u201D. This invisible leash, you must break it! If you don\u2019t,
+      the leash will choke you out."
+    dialogueType: 4
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: "The manager gives you shit, now you push it to me instead? I\u2019ve always
+      greeted you in the morning DAILY, and do you greet back? Of course not."
+    dialogueType: 5
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 
+  - text: "Or maybe\u2026 You want to be leashed? Be a good boy to this corporation?
+      Earn good money?"
+    dialogueType: 7
+    isRespondableText: 0
+    successResponse: 
+    failureResponse: 

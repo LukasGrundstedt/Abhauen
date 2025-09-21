@@ -262,10 +262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca09f3b3aa02da44bb4814408d247e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyProbability: 75
+  enemyProbability: 100
   enemyPrefabs:
   - {fileID: 6086295546422508145, guid: 61e368342158a03489c873793505211a, type: 3}
   - {fileID: 6086295546422508145, guid: c4969adfbf6555242a4b66081d49b2d1, type: 3}
+  - {fileID: 6086295546422508145, guid: f68407ade3c67f0439bc093e984249f7, type: 3}
+  - {fileID: 6086295546422508145, guid: 32ed7c5ed4e9edb4b99f1668519ff823, type: 3}
 --- !u!1 &6681118625645923840
 GameObject:
   m_ObjectHideFlags: 0

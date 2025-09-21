@@ -23,7 +23,7 @@ MonoBehaviour:
     isRespondableText: 0
     successResponse: 
     failureResponse: 
-  - text: You look really dead, man. Is everything-?
+  - text: You look really dead, man. Is everything-? (X)
     dialogueType: 7
     isRespondableText: 1
     successResponse: Well, I have my coffee now.

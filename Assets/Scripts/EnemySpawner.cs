@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (currentIndex == 3 && currentEnemy == null)
         {
-            bool drugsUsed = Player.Instance.DrugsUsed <= 0;
+            bool drugsUsed = Player.Instance.DrugsUsed > 0;
             OnEndingReached?.Invoke(drugsUsed);
         }
     }

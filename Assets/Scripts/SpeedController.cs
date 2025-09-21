@@ -11,13 +11,12 @@ public class SpeedController : MonoBehaviour
     [SerializeField] private int countToNormal = 3;
     [SerializeField] private float drugSlowFactor = 0.5f;
     [SerializeField] private float textSlowFactor = 0.5f;
-    [SerializeField] private TextMeshProUGUI drugAmount;
     public float LevelSpeed { get; private set; }
     public float TextObjectSpeed { get; private set; }
     public int Count { get; set; } = 0;
     public int CountWhileDrugs { get; set; } = 0;
     public float CurrentFactor { get; set; } = 1f;
-   
+    
 
     private void Awake()
     {
@@ -31,7 +30,8 @@ public class SpeedController : MonoBehaviour
     private void Update()
     {
         float currentMultiplier = Mathf.Lerp(1f, maxMultiplier, (float)Count / (float)maxCountToMaxSpeed);
-
+        float soundSpeed = Mathf.Lerp(0f, 0.9f, (float)Count / (float)maxCountToMaxSpeed);
+        AudioManager.Instance.SetIntensity(soundSpeed);
         LevelSpeed = Corridor.Instance.Speed * currentMultiplier;
         TextObjectSpeed = LevelSpeed * CurrentFactor * textSlowFactor;
 

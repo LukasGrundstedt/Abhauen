@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: Boss_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueText
   <Dialogue>k__BackingField:
-  - text: Mr Doe, welcome. Please have a seat!
+  - text: Mr Doe, welcome. Please have a seat! (Y)
     dialogueType: 4
     isRespondableText: 1
     successResponse: Of course, sir.
     failureResponse: "\u2026"
   - text: "I\u2019m sure you wonder why you are here. Well, it really doesn\u2019t
-      matter because I will tell you anyway."
+      matter because I will tell you anyway. (A)"
     dialogueType: 5
     isRespondableText: 0
     successResponse: 
     failureResponse: 
-  - text: You fuck up, Doe. You really fuck it up this time!
+  - text: You fuck up, Doe. You really fuck it up this time! (B)
     dialogueType: 6
     isRespondableText: 1
     successResponse: Excuse me, sir?
     failureResponse: "\u2026What?"
   - text: Listen here, I thought you were my best employee. I expected better from
-      you.
+      you. (X)
     dialogueType: 7
     isRespondableText: 0
     successResponse: 
     failureResponse: 
   - text: The deal fell through because of your incompetence.. You fail me, you fail
-      your co-workers, you fail this company.
+      your co-workers, you fail this company. (A)
     dialogueType: 5
     isRespondableText: 1
     successResponse: "Sir, it is not my fault. I didn\u2019t have enough time."

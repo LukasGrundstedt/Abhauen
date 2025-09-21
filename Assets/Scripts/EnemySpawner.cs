@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,10 +10,21 @@ public class EnemySpawner : MonoBehaviour
 
     private Enemy currentEnemy;
 
+    public static event Action<bool> OnEndingReached;
+
     private void Awake()
     {
         CorridorSpawner.OnCorridorPartSpawned += RollEnemySpawn;
         currentIndex = 0;
+    }
+
+    private void Update()
+    {
+        if (currentIndex == 3 && currentEnemy == null)
+        {
+            bool drugsUsed = Player.Instance.DrugsUsed <= 0;
+            OnEndingReached?.Invoke(drugsUsed);
+        }
     }
 
     private void RollEnemySpawn(Vector3 position)

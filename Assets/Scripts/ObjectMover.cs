@@ -3,9 +3,9 @@
 public class ObjectMover : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private bool isTextObject;
 
     private bool isStopped;
-    private float speedMultiplier = 1f;
 
     private void Update()
     {
@@ -13,7 +13,14 @@ public class ObjectMover : MonoBehaviour
         {
             return;
         }
-        rb.MovePosition(transform.position + new Vector3(0f, 0f, -(SpeedController.Instance.Speed * speedMultiplier * Time.deltaTime)));
+
+        if (isTextObject)
+        {
+            rb.MovePosition(transform.position + new Vector3(0f, 0f, -(SpeedController.Instance.TextObjectSpeed * Time.deltaTime)));
+            return;
+        }
+
+        rb.MovePosition(transform.position + new Vector3(0f, 0f, -(SpeedController.Instance.LevelSpeed * Time.deltaTime)));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,13 +33,11 @@ public class ObjectMover : MonoBehaviour
 
     public void Resume()
     {
-        speedMultiplier = 1f;
         isStopped = false;
     }
 
     public void Stop()
     {
         isStopped = true;
-        speedMultiplier = 0f;
     }
 }

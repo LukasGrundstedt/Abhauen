@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectMover
   rb: {fileID: 780050480044000401}
+  isTextObject: 1
 --- !u!64 &6636269852219912015
 MeshCollider:
   m_ObjectHideFlags: 0

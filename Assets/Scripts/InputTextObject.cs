@@ -74,7 +74,7 @@ public class InputTextObject : TextObject
     private void OnDestroy()
     {
         InputManager.OnInput -= CompareInput;
-        SpeedController.Instance.UpdateCount();
+       
         DialogueManager.OnTextProgress?.Invoke();
     }
 }

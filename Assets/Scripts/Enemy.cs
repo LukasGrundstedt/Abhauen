@@ -38,4 +38,9 @@ public class Enemy : MonoBehaviour
             DialogueManager.OnTextProgress?.Invoke();
         }
     }
+
+    private void OnDestroy()
+    {
+        SpeedController.Instance.UpdateCount();
+    }
 }

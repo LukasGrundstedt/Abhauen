@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] private int aimScore;
     [SerializeField] private TextMeshProUGUI drugsAmount;
-    [SerializeField] private TextMeshProUGUI drugsUseable;
+    [SerializeField] private Image drugClosed;
+    [SerializeField] private Image drugOpened;
 
     [SerializeField] private int maxHealth = 10;
     public int DrugsAvailable = 5;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         Health = maxHealth;
         DrugsUsed = 0;
         sprite.transform.rotation = Quaternion.identity;
+        SetDrugOpenedActive(true);
         drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
     }
 
@@ -56,7 +58,7 @@ public class Player : MonoBehaviour
 
         if (OnDrugs != false)
         {
-            drugsUseable.gameObject.SetActive(true);
+            drugClosed.color = Color.red;
             StartCoroutine(HideDragsUseable());
             return;
         }
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
         OnDrugs = true;
         DrugsUsed++;
         Health++;
+        SetDrugOpenedActive(false);
         drugsAmount.text = (DrugsAvailable - DrugsUsed).ToString();
         SpeedController.Instance.SetSlowFactor();
     }
@@ -71,7 +74,13 @@ public class Player : MonoBehaviour
     public IEnumerator HideDragsUseable()
     {
         yield return new WaitForSeconds(0.1f);
-        drugsUseable.gameObject.SetActive(false);
+        drugClosed.color = Color.white;
+    }
+
+    public void SetDrugOpenedActive(bool value)
+    {
+        drugClosed.gameObject.SetActive(!value);
+        drugOpened.gameObject.SetActive(value);
     }
 
     public void GetHit(int damage)

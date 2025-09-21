@@ -62,7 +62,7 @@ public class UI_TweenAnimation_Script: MonoBehaviour
     //To do so, we simply add very big number to X and Y-value of the element
     //DO NOT deactivate the GO (as other scripts depends on its Start())
     //To hide it, just turn the Alpha to 0
-    private void Hide_UIElements()
+    public void Hide_UIElements()
     {
 
         for (int i = 0;i < elementCountAmount;i++)

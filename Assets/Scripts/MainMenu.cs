@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnStartButton()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(1);
     }
 
     public void OnQuitButton()

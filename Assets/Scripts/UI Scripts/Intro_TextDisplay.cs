@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Intro_TextDisplay : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class Intro_TextDisplay : MonoBehaviour
         {
             if (introTextID == introTexts.Length)
             {
+                SceneManager.LoadScene(2);
                 StopCoroutine(ReplaceTextAfterDelay());
             }
 
@@ -60,12 +62,8 @@ public class Intro_TextDisplay : MonoBehaviour
                 //introTextID += 1;
                 textComponent.text = introTexts[introTextID];
             }
-            
-
-            
         }
-        
-        
 
+        SceneManager.LoadScene(2);
     }
 }
